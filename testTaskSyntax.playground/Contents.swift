@@ -78,3 +78,42 @@ protocol SpeakingCreature {
     
     func voices()
 }
+
+struct Human {
+    enum Name: String {
+        case name, surName, secondName
+    }
+    
+    let name: Name
+    
+    var age: Int {
+        get {
+            self._age
+        }
+        set {
+            if newValue >= 0 {
+                self._age = newValue
+            }
+        }
+    }
+    private var _age: Int = 0
+    
+    var singAge: String {
+        get {
+            age >= 18
+            return "взрослый"
+        }
+        set {
+            age < 18
+            print("ребенок")
+        }
+    }
+    
+    let happyBirthdayAction = {(age: Int) -> Void in
+        print(age)
+    }
+    
+    init(name: Name) {
+        self.name = name
+    }
+}
