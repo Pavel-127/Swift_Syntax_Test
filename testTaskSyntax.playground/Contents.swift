@@ -72,7 +72,7 @@ protocol RunningCreature {
 
 protocol SpeakingCreature {
     var voice: String {get}
-    var isMuted: String {get set}
+    var isMuted: Bool {get set}
     
     func stirUp()
     
@@ -121,7 +121,11 @@ struct Human {
 class Animal {
     let name: String
     private(set) var isHerbivorous: String
-    var numberOfInstances: Int = 0
+    var numberOfInstances: Int {
+        get {
+            return 0
+        }
+    }
     
     init(name: String, isHerbivorous: String) {
         self.name = name
@@ -130,5 +134,77 @@ class Animal {
     
     func printInfo () {
         print("\(name) \(isHerbivorous) \(numberOfInstances)")
+    }
+}
+
+//5. Создайте сущность Tiger, которая должна реализовывать функционал сущности Animal и подчиняться протоколу RunningCreature
+//переопределите свойство numberOfInstances с соответствующим количеством тигров по всему миру
+//реализуйте функцию бежать и остановиться . Соответствующие действия выполняются, меняя флаг isRunning, и выводя в консоль информацию о том, что Тигр делает. Обратите внимание, что если тигр уже бежит, то тело функции выполниться не должно. Аналогично и с остановиться
+//переопределите функцию вывода информации о классе, добавив туда что-нибудь о Тигре
+//реализуйте функцию съесть животное, которое ест животное только если оно не тигр. А если животное умеет бегать (подчиняется RunningCreature), то его скорость бега должна быть меньше скорости тигра. Выведите информацию о том, кого съел Тигр.
+
+class Tiger: Animal, RunningCreature {
+    var runningSpeed: Int
+    
+    var numberOfPaws: Int
+    
+    var runningCreature: Bool
+    
+    override var numberOfInstances: Int {
+        get {
+            return 100
+        }
+    }
+    
+    init(runningSpeed: Int, numberOfPaws: Int, runningCreature: Bool, name: String, isHerbivorous: String) {
+        self.runningSpeed = runningSpeed
+        self.numberOfPaws = numberOfPaws
+        self.runningCreature = runningCreature
+        
+        super.name = name
+        super.isHerbivorous = isHerbivorous
+    }
+    
+    func runn() {
+        if runningCreature == true {
+            print("Tiger runinig")
+        }
+    }
+    
+    func willStop() {
+        if runningCreature == false {
+            print("Tiger stop")
+        }
+    }
+    
+    func eatAnimal() {
+        
+    }
+    
+    override func printInfo() {
+        print("\(name) \(isHerbivorous) \(numberOfInstances) \(numberOfPaws)")
+    }
+    
+}
+
+class Parrot: Animal, SpeakingCreature {
+    var voice: String = "medium"
+    
+    var isMuted: Bool = true
+    
+    override var numberOfInstances: Int {
+        return 100000
+    }
+    
+    func stirUp() {
+        if isMuted == true {
+            print("Parrot is not voice")
+        }
+    }
+    
+    func voices() {
+        if isMuted == false {
+            print("Parrot voice")
+        }
     }
 }
