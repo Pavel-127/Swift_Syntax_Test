@@ -117,3 +117,18 @@ struct Human {
         self.name = name
     }
 }
+
+class Animal {
+    let name: String
+    private(set) var isHerbivorous: String
+    var numberOfInstances: Int = 0
+    
+    init(name: String, isHerbivorous: String) {
+        self.name = name
+        self.isHerbivorous = isHerbivorous
+    }
+    
+    func printInfo () {
+        print("\(name) \(isHerbivorous) \(numberOfInstances)")
+    }
+}
