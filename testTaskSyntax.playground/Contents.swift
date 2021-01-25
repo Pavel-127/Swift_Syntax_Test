@@ -137,12 +137,6 @@ class Animal {
     }
 }
 
-//5. Создайте сущность Tiger, которая должна реализовывать функционал сущности Animal и подчиняться протоколу RunningCreature
-//переопределите свойство numberOfInstances с соответствующим количеством тигров по всему миру
-//реализуйте функцию бежать и остановиться . Соответствующие действия выполняются, меняя флаг isRunning, и выводя в консоль информацию о том, что Тигр делает. Обратите внимание, что если тигр уже бежит, то тело функции выполниться не должно. Аналогично и с остановиться
-//переопределите функцию вывода информации о классе, добавив туда что-нибудь о Тигре
-//реализуйте функцию съесть животное, которое ест животное только если оно не тигр. А если животное умеет бегать (подчиняется RunningCreature), то его скорость бега должна быть меньше скорости тигра. Выведите информацию о том, кого съел Тигр.
-
 class Tiger: Animal, RunningCreature {
     var runningSpeed: Int
     
@@ -161,8 +155,7 @@ class Tiger: Animal, RunningCreature {
         self.numberOfPaws = numberOfPaws
         self.runningCreature = runningCreature
         
-        super.name = name
-        super.isHerbivorous = isHerbivorous
+        super.init(name: <#T##String#>, isHerbivorous: <#T##String#>)
     }
     
     func runn() {
@@ -206,5 +199,42 @@ class Parrot: Animal, SpeakingCreature {
         if isMuted == false {
             print("Parrot voice")
         }
+    }
+}
+
+final class Zoo {
+    static var maxNumberOfAnimals: Int {
+        get {
+            1000
+        }
+    }
+    static var nameZoo: String {
+        get {
+            ""
+        }
+    }
+    
+    private(set) var totalNumberOfVisitors: Int {
+        willSet {
+            print("Мы рады вас приветствовать, вы \(newValue) поситетель")
+        }
+    }
+    
+    private(set) var animals: [Animal] = []
+    private(set) var visitors: [Human] = []
+    
+    init(maxNumberOfAnimals: Int = 1000, nameZoo: String = "") {
+    }
+    
+    func addAnimalInZoo() {
+        if  animals.count >= 1000 {
+            animals.append(<#Animal#>)
+        } else {
+            print("Не удолось добавить")
+        }
+    }
+    
+    func addVisitor() {
+        visitors.append(<#T##newElement: Human##Human#>)
     }
 }
