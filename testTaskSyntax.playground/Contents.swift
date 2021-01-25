@@ -69,3 +69,12 @@ protocol RunningCreature {
     
     func willStop()
 }
+
+protocol SpeakingCreature {
+    var voice: String {get}
+    var isMuted: String {get set}
+    
+    func stirUp()
+    
+    func voices()
+}
